@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1350" width="100%" height="100%" style="background-color: #ffffff; font-family: 'Segoe UI', Arial, sans-serif;">
+  <defs>
+    <!-- Arrowhead markers -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#334155" />
+    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000000" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- 1. START NODE -->
+  <g transform="translate(300, 30)">
+    <rect x="0" y="0" width="400" height="60" rx="30" ry="30" fill="#dcfce7" stroke="#16a34a" stroke-width="3" filter="url(#shadow)"/>
+    <text x="200" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#14532d">Start: Ambulance Departs</text>
+  </g>
+
+  <!-- Line 1 to 2 -->
+  <line x1="500" y1="90" x2="500" y2="130" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <!-- 2. IN-AMBULANCE SENSING -->
+  <g transform="translate(225, 130)">
+    <rect x="0" y="0" width="550" height="95" rx="10" ry="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="3" filter="url(#shadow)"/>
+    <text x="275" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#0369a1">1. In-Ambulance Sensing</text>
+    <text x="275" y="68" text-anchor="middle" font-size="18" font-weight="600" fill="#0f172a">• Read Heart Rate &amp; SpO₂ Sensors</text>
+    <text x="275" y="88" text-anchor="middle" font-size="18" font-weight="600" fill="#0f172a">• Read GPS Coordinates (Lat, Lng)</text>
+  </g>
+
+  <!-- Line 2 to 3 -->
+  <line x1="500" y1="225" x2="500" y2="265" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <!-- 3. EDGE CLASSIFICATION -->
+  <g transform="translate(150, 265)">
+    <rect x="0" y="0" width="700" height="100" rx="10" ry="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="3" filter="url(#shadow)"/>
+    <text x="350" y="36" text-anchor="middle" font-size="22" font-weight="700" fill="#0369a1">2. Edge Computing &amp; Triage</text>
+    <text x="350" y="66" text-anchor="middle" font-size="18" font-weight="600" fill="#0f172a">• Evaluate Triage: STABLE / WARNING / CRITICAL</text>
+    <text x="350" y="90" text-anchor="middle" font-size="18" font-weight="600" fill="#0f172a">• Compute Haversine Distance to Hospital</text>
+  </g>
+
+  <!-- Line 3 to Decision 1 -->
+  <line x1="500" y1="365" x2="500" y2="405" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <!-- 4. DECISION: INTERNET CONNECTED? -->
+  <g transform="translate(500, 480)">
+    <polygon points="0,-75 160,0 0,75 -160,0" fill="#fef08a" stroke="#ca8a04" stroke-width="3" filter="url(#shadow)"/>
+    <text x="0" y="-8" text-anchor="middle" font-size="20" font-weight="700" fill="#713f12">Internet</text>
+    <text x="0" y="18" text-anchor="middle" font-size="20" font-weight="700" fill="#713f12">Connected?</text>
+  </g>
+
+  <!-- Branch NO (Offline -> SD Card) -->
+  <path d="M 340 480 L 220 480 L 220 595" fill="none" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="235" y="455" width="55" height="30" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="262" y="476" text-anchor="middle" font-size="16" font-weight="700" fill="#dc2626">NO</text>
+
+  <!-- 5. MICROSD OFFLINE LOG -->
+  <g transform="translate(50, 595)">
+    <rect x="0" y="0" width="340" height="90" rx="10" ry="10" fill="#e0f2fe" stroke="#0284c7" stroke-width="3" filter="url(#shadow)"/>
+    <text x="170" y="36" text-anchor="middle" font-size="20" font-weight="700" fill="#0369a1">Save to MicroSD Card</text>
+    <text x="170" y="65" text-anchor="middle" font-size="17" font-weight="600" fill="#0f172a">(/offline_logs.csv)</text>
+  </g>
+
+  <!-- Branch SD Card back to Cloud when reconnected -->
+  <path d="M 220 685 L 220 740 L 410 740" fill="none" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="230" y="725" width="165" height="28" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="312" y="744" text-anchor="middle" font-size="14" font-weight="700" fill="#16a34a">When reconnected</text>
+
+  <!-- Branch YES directly to Cloud -->
+  <path d="M 660 480 L 780 480 L 780 740 L 590 740" fill="none" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="705" y="455" width="55" height="30" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="732" y="476" text-anchor="middle" font-size="16" font-weight="700" fill="#16a34a">YES</text>
+
+  <!-- 6. CLOUD BROKER -->
+  <g transform="translate(410, 710)">
+    <rect x="0" y="0" width="180" height="60" rx="10" ry="10" fill="#f1f5f9" stroke="#475569" stroke-width="3" filter="url(#shadow)"/>
+    <text x="90" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#1e293b">Cloud Broker</text>
+  </g>
+
+  <!-- Cloud Split lines to Node B and Hospital -->
+  <path d="M 450 770 L 450 820 L 250 820 L 250 850" fill="none" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M 550 770 L 550 820 L 750 820 L 750 850" fill="none" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <!-- 7. NODE B: TRAFFIC PREEMPTION -->
+  <g transform="translate(50, 850)">
+    <rect x="0" y="0" width="400" height="110" rx="10" ry="10" fill="#dcfce7" stroke="#16a34a" stroke-width="3" filter="url(#shadow)"/>
+    <text x="200" y="36" text-anchor="middle" font-size="20" font-weight="700" fill="#15803d">4. Roadside Traffic Light (V2I)</text>
+    <text x="200" y="66" text-anchor="middle" font-size="17" font-weight="600" fill="#0f172a">• If Distance ≤ 150m:</text>
+    <text x="200" y="92" text-anchor="middle" font-size="18" font-weight="800" fill="#15803d">Turn Light GREEN Automatically</text>
+  </g>
+
+  <!-- 8. HOSPITAL TELE-ICU DASHBOARD -->
+  <g transform="translate(550, 850)">
+    <rect x="0" y="0" width="400" height="110" rx="10" ry="10" fill="#fee2e2" stroke="#dc2626" stroke-width="3" filter="url(#shadow)"/>
+    <text x="200" y="36" text-anchor="middle" font-size="20" font-weight="700" fill="#b91c1c">5. Hospital Tele-ICU Dashboard</text>
+    <text x="200" y="66" text-anchor="middle" font-size="17" font-weight="600" fill="#0f172a">• Track live ambulance on map</text>
+    <text x="200" y="92" text-anchor="middle" font-size="17" font-weight="600" fill="#0f172a">• View real-time patient vitals</text>
+  </g>
+
+  <!-- Combine lines from Traffic and Hospital to Final Decision -->
+  <path d="M 250 960 L 250 1010 L 450 1010 L 450 1045" fill="none" stroke="#334155" stroke-width="3"/>
+  <path d="M 750 960 L 750 1010 L 550 1010 L 550 1045" fill="none" stroke="#334155" stroke-width="3"/>
+  <line x1="500" y1="1010" x2="500" y2="1050" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <!-- 9. DECISION 2: DISTANCE <= 50M -->
+  <g transform="translate(500, 1120)">
+    <polygon points="0,-70 160,0 0,70 -160,0" fill="#fef08a" stroke="#ca8a04" stroke-width="3" filter="url(#shadow)"/>
+    <text x="0" y="-8" text-anchor="middle" font-size="20" font-weight="700" fill="#713f12">Distance</text>
+    <text x="0" y="18" text-anchor="middle" font-size="20" font-weight="700" fill="#713f12">≤ 50 meters?</text>
+  </g>
+
+  <!-- Line from Decision 2 to Arrival -->
+  <line x1="500" y1="1190" x2="500" y2="1245" stroke="#334155" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="470" y="1200" width="60" height="26" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="500" y="1218" text-anchor="middle" font-size="15" font-weight="700" fill="#16a34a">YES</text>
+
+  <!-- 10. ARRIVAL NODE -->
+  <g transform="translate(250, 1245)">
+    <rect x="0" y="0" width="500" height="75" rx="38" ry="38" fill="#dcfce7" stroke="#16a34a" stroke-width="3" filter="url(#shadow)"/>
+    <text x="250" y="32" text-anchor="middle" font-size="22" font-weight="800" fill="#14532d">Arrival at Hospital Bay</text>
+    <text x="250" y="58" text-anchor="middle" font-size="17" font-weight="600" fill="#15803d">• 1.6 kHz Siren sounds &amp; Doctors receive patient</text>
+  </g>
+</svg>

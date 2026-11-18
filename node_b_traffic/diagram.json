@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "author": "Embedded Systems & IoT Engineer",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-led", "id": "led_red", "top": -120, "left": 140, "attrs": { "color": "red", "label": "RED LIGHT" } },
+    { "type": "wokwi-led", "id": "led_yellow", "top": -60, "left": 140, "attrs": { "color": "yellow", "label": "YELLOW LIGHT" } },
+    { "type": "wokwi-led", "id": "led_green", "top": 0, "left": 140, "attrs": { "color": "green", "label": "GREEN LIGHT" } },
+    { "type": "wokwi-resistor", "id": "r_red", "top": -120, "left": 80, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r_yellow", "top": -60, "left": 80, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r_green", "top": 0, "left": 80, "attrs": { "value": "220" } }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "esp:D25", "r_red:1", "red", [] ],
+    [ "r_red:2", "led_red:A", "red", [] ],
+    [ "esp:GND.1", "led_red:C", "black", [] ],
+    [ "esp:D26", "r_yellow:1", "gold", [] ],
+    [ "r_yellow:2", "led_yellow:A", "gold", [] ],
+    [ "esp:GND.1", "led_yellow:C", "black", [] ],
+    [ "esp:D27", "r_green:1", "green", [] ],
+    [ "r_green:2", "led_green:A", "green", [] ],
+    [ "esp:GND.1", "led_green:C", "black", [] ]
+  ],
+  "dependencies": {}
+}

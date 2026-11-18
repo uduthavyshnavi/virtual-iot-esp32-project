@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>System Workflow Diagram - High Resolution</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 30px;
+      background: #f8fafc;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .toolbar {
+      margin-bottom: 25px;
+      display: flex;
+      gap: 15px;
+    }
+    .btn {
+      background: #0284c7;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: #0369a1;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      max-width: 950px;
+      width: 100%;
+    }
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button class="btn" onclick="downloadPNG()">📥 Download High-Resolution PNG for Word</button>
+  </div>
+  <div class="card" id="diagram-container">
+    <img id="svg-img" src="workflow_diagram.svg" alt="Workflow Diagram" style="width:100%; display:block;" />
+  </div>
+
+  <canvas id="export-canvas" style="display:none;"></canvas>
+
+  <script>
+    function downloadPNG() {
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.onload = function() {
+        const canvas = document.getElementById('export-canvas');
+        // Export at 2x resolution (2000 x 2700) for ultra-crisp print quality
+        canvas.width = 2000;
+        canvas.height = 2700;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        
+        const a = document.createElement('a');
+        a.download = 'Clear_Project_Workflow_Diagram.png';
+        a.href = canvas.toDataURL('image/png');
+        a.click();
+      };
+      img.src = 'workflow_diagram.svg';
+    }
+  </script>
+</body>
+</html>

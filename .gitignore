@@ -1,0 +1,60 @@
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Editor and IDE Files
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# Arduino / PlatformIO / ESP32 Build Outputs
+build/
+.pio/
+.pioenvs/
+.piolibdeps/
+*.bin
+*.hex
+*.elf
+*.o
+*.a
+*.d
+*.map
+*.eep
+*.lst
+
+# Node.js & Web Dependencies / Logs
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment and Sensitive Variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Project Temporary Logs & Offline Buffers
+*.log
+offline_logs.csv
+scratch/
+tmp/
+temp/
+
